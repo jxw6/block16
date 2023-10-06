@@ -39,7 +39,7 @@ function capitalizeNames() {
   // TODO:  Use the .map() and possibly .slice() methods and return a new items array with the item names capitalized
   // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
   const capitalizedItems = items.map(x => {
-    return x.name.toUpperCase();
+    return x.name.charAt(0).toUpperCase() + x.name.slice(1);
   })
   return capitalizedItems;
 }

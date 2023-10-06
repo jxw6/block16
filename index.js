@@ -15,6 +15,9 @@ const cart = [];
 
 function logItemNames() {
   //TODO: use the .forEach() method to log out the name of each item
+  items.forEach((item)=>{
+    console.log("Item: ", item);
+  })
 }
 
 /**
@@ -23,6 +26,10 @@ function logItemNames() {
  */
 function findItemById(id) {
   // TODO: Use the .find() method to return the item who's id matches the passed in id
+  const foundItem = items.find((currentItem) => {
+    return currentItem.id === id;
+  })
+  return foundItem;
 }
 
 /**
@@ -31,6 +38,10 @@ function findItemById(id) {
 function capitalizeNames() {
   // TODO:  Use the .map() and possibly .slice() methods and return a new items array with the item names capitalized
   // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
+  const capitalizedItems = items.map(x => {
+    return x.name.toUpperCase();
+  })
+  return capitalizedItems;
 }
 
 /**
@@ -39,6 +50,9 @@ function capitalizeNames() {
 
 function calculateTotalInventory() {
   // TODO Use the .reduce() method to return the total number of items in inventory
+  const totalInventory = items.reduce((acc, item) => {
+  return acc + item.inventory; }, 0);
+  return totalInventory;
 }
 
 /**
@@ -46,6 +60,10 @@ function calculateTotalInventory() {
  */
 function calculateAllInventoryPrice() {
   // TODO Use the .reduce() method to return the total price of all the items in inventory
+  const totalPrice = items.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+  return totalPrice;
 }
 
 /**
@@ -54,6 +72,10 @@ function calculateAllInventoryPrice() {
  */
 function getItemPriceByName(name) {
   // TODO: Use your knowledge of objects and arrays to get the price of the item passed in
+  const foundItem = items.find((currentItem) => {
+    return currentItem.name === name;
+  })
+  return foundItem.price;
 }
 
 /**
@@ -62,10 +84,18 @@ function getItemPriceByName(name) {
  */
 function filterItemsByCategoryId(categoryId) {
   // TODO: use the .filter() method to filter out all items which don't belong the passed in category
+  const result = items.filter(filteredItems => filteredItems.categoryId === categoryId);
+  return result;
 }
 
 function logCartItems() {
   // TODO: Loop through your cart and use the indexes to log the names of all items in your cart
+  cart.forEach((cartItem) => {
+    const foundItem = items.find((currentItem) => {
+      return currentItem.id === parseInt(cartItem);
+    })
+    console.log(foundItem.name);
+  })
 }
 
 /**
@@ -73,6 +103,14 @@ function logCartItems() {
  */
 function calculateTotalCartPrice() {
   // TODO: Loop through your cart and return the total price of all items in your cart
+  let calculatedPrice = 0;
+  cart.forEach((cartItem) => {
+    const foundItem = items.find((currentItem) => {
+      return currentItem.id === parseInt(cartItem);
+    })
+    calculatedPrice += foundItem.price;
+  })
+  return calculatedPrice;
 }
 
 // --------------------- DO NOT CHANGE THE CODE BELOW ------------------------ //
